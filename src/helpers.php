@@ -62,11 +62,13 @@ if (! function_exists('__')) {
      * Lookup a message in the current domain.
      *
      * @param  string $msgid
+     * @param  array  $arguments
      * @return string
      */
-    function __($msgid)
+    function __($msgid, $arguments = [])
     {
-        return Gettext::getText($msgid);
+        $line = Gettext::getText($msgid);
+        return replacePlaceholders($line, $arguments);
     }
 }
 
@@ -77,11 +79,13 @@ if (! function_exists('_n')) {
      * @param  string $msgid1
      * @param  string $msgid2
      * @param  int    $n
+     * @param  array  $arguments
      * @return string
      */
-    function _n($msgid1, $msgid2, $n)
+    function _n($msgid1, $msgid2, $n, $arguments = [])
     {
-        return Gettext::nGetText($msgid1, $msgid2, $n);
+        $line = Gettext::nGetText($msgid1, $msgid2, $n);
+        return replacePlaceholders($line, $arguments);
     }
 }
 
@@ -91,11 +95,13 @@ if (! function_exists('_d')) {
      *
      * @param  string $domain
      * @param  string $msgid
+     * @param  array  $arguments
      * @return string
      */
-    function _d($domain, $msgid)
+    function _d($domain, $msgid, $arguments = [])
     {
-        return Gettext::dGetText($domain, $msgid);
+        $line = Gettext::dGetText($domain, $msgid);
+        return replacePlaceholders($line, $arguments);
     }
 }
 
@@ -107,11 +113,13 @@ if (! function_exists('_dn')) {
      * @param  string $msgid1
      * @param  string $msgid2
      * @param  int    $n
+     * @param  array  $arguments
      * @return string
      */
-    function _dn($domain, $msgid1, $msgid2, $n)
+    function _dn($domain, $msgid1, $msgid2, $n, $arguments = [])
     {
-        return Gettext::dNGetText($domain, $msgid1, $msgid2, $n);
+        $line = Gettext::dNGetText($domain, $msgid1, $msgid2, $n);
+        return replacePlaceholders($line, $arguments);
     }
 }
 
@@ -122,11 +130,13 @@ if (! function_exists('_dc')) {
      * @param  string $domain
      * @param  string $msgid
      * @param  int    $category
+     * @param  array  $arguments
      * @return string
      */
-    function _dc($domain, $msgid, $category)
+    function _dc($domain, $msgid, $category, $arguments = [])
     {
-        return Gettext::dCGetText($domain, $msgid, $category);
+        $line = Gettext::dCGetText($domain, $msgid, $category);
+        return replacePlaceholders($line, $arguments);
     }
 }
 
@@ -139,11 +149,13 @@ if (! function_exists('_dcn')) {
      * @param  string $msgid2
      * @param  int    $n
      * @param  int    $category
+     * @param  array  $arguments
      * @return string
      */
-    function _dcn($domain, $msgid1, $msgid2, $n, $category)
+    function _dcn($domain, $msgid1, $msgid2, $n, $category, $arguments = [])
     {
-        return Gettext::dCNGetText($domain, $msgid1, $msgid2, $n, $category);
+        $line = Gettext::dCNGetText($domain, $msgid1, $msgid2, $n, $category);
+        return replacePlaceholders($line, $arguments);
     }
 }
 
@@ -153,11 +165,13 @@ if (! function_exists('_p')) {
      *
      * @param  string $context
      * @param  string $msgid
+     * @param  array  $arguments
      * @return string
      */
-    function _p($context, $msgid)
+    function _p($context, $msgid, $arguments = [])
     {
-        return Gettext::pGetText($context, $msgid);
+        $line = Gettext::pGetText($context, $msgid, $arguments = []);
+        return replacePlaceholders($line, $arguments);
     }
 }
 
@@ -168,11 +182,13 @@ if (! function_exists('_dp')) {
      * @param  string $domain
      * @param  string $context
      * @param  string $msgid
+     * @param  array  $arguments
      * @return string
      */
-    function _dp($domain, $context, $msgid)
+    function _dp($domain, $context, $msgid, $arguments = [])
     {
-        return Gettext::dPGetText($domain, $context, $msgid);
+        $line = Gettext::dPGetText($domain, $context, $msgid);
+        return replacePlaceholders($line, $arguments);
     }
 }
 
@@ -184,11 +200,13 @@ if (! function_exists('_dcp')) {
      * @param  string $context
      * @param  string $msgid
      * @param  int    $category
+     * @param  array  $arguments
      * @return string
      */
-    function _dcp($domain, $context, $msgid, $category)
+    function _dcp($domain, $context, $msgid, $category, $arguments = [])
     {
-        return Gettext::dCPGetText($domain, $context, $msgid, $category);
+        $line = Gettext::dCPGetText($domain, $context, $msgid, $category);
+        return replacePlaceholders($line, $arguments);
     }
 }
 
@@ -200,11 +218,13 @@ if (! function_exists('_np')) {
      * @param  string $msgid1
      * @param  string $msgid2
      * @param  int    $n
+     * @param  array  $arguments
      * @return string
      */
-    function _np($context, $msgid1, $msgid2, $n)
+    function _np($context, $msgid1, $msgid2, $n, $arguments = [])
     {
-        return Gettext::nPGetText($context, $msgid1, $msgid2, $n);
+        $line = Gettext::nPGetText($context, $msgid1, $msgid2, $n);
+        return replacePlaceholders($line, $arguments);
     }
 }
 
@@ -217,11 +237,13 @@ if (! function_exists('_dnp')) {
      * @param  string $msgid1
      * @param  string $msgid2
      * @param  int    $n
+     * @param  array  $arguments
      * @return string
      */
-    function _dnp($domain, $context, $msgid1, $msgid2, $n)
+    function _dnp($domain, $context, $msgid1, $msgid2, $n, $arguments = [])
     {
-        return Gettext::dNPGetText($domain, $context, $msgid1, $msgid2, $n);
+        $line = Gettext::dNPGetText($domain, $context, $msgid1, $msgid2, $n);
+        return replacePlaceholders($line, $arguments);
     }
 }
 
@@ -235,10 +257,37 @@ if (! function_exists('_dcnp')) {
      * @param  string $msgid2
      * @param  int    $n
      * @param  int    $category
+     * @param  array  $arguments
      * @return string
      */
-    function _dcnp($domain, $context, $msgid1, $msgid2, $n, $category)
+    function _dcnp($domain, $context, $msgid1, $msgid2, $n, $category, $arguments = [])
     {
-        return Gettext::dCNPGetText($domain, $context, $msgid1, $msgid2, $n, $category);
+        $line = Gettext::dCNPGetText($domain, $context, $msgid1, $msgid2, $n, $category);
+        return replacePlaceholders($line, $arguments);
+    }
+}
+
+if(!function_exists('replacePlaceholders')) {
+    /**
+     * Replace the place-holders on a line.
+     *
+     * @param  string  $line
+     * @param  array   $arguments
+     * @return string
+     */
+    function replacePlaceholders($line, $arguments = [])
+    {
+        $sortOrder = [];
+        foreach($arguments as $key => $value) {
+            $sortOrder[$key] = mb_strlen($key) * -1;
+        }
+
+        asort($sortOrder);
+
+        foreach(array_keys($sortOrder) as $key) {
+            $line = str_replace(':' . $key, $arguments[$key], $line);
+        }
+
+        return $line;
     }
 }
