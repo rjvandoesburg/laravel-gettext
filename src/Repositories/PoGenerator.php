@@ -77,9 +77,11 @@ class PoGenerator
         $compiler = new BladeCompiler($this->files, $storagePath);
 
         foreach ($paths as $path) {
-            $files = $this->files->glob(realpath($path).'/{,**/}*.php', GLOB_BRACE);
+            $directoryIterator = new \RecursiveDirectoryIterator(realpath($path) . '/');
+            $recursiveIterator = new \RecursiveIteratorIterator($directoryIterator);
+            $regexIterator = new \RegexIterator($recursiveIterator, '/^.+\.blade\.php$/i');
 
-            foreach ($files as $file) {
+            foreach ($regexIterator as $file) {
                 if (! Str::endsWith(strtolower($file), '.blade.php')) {
                     continue;
                 }
