@@ -9,15 +9,6 @@
             "email": "clusteramaryllis77@gmail.com"
         }
     ],
-    "require": {
-        "php": ">=5.5.9",
-        "illuminate/config": "5.1.*",
-        "illuminate/view": "5.1.*"
-    },
-    "require-dev": {
-        "mockery/mockery": "~0.9",
-        "phpunit/phpunit": "~4.0"
-    },
     "suggest": {
         "ext-gettext": "*"
     },
@@ -32,6 +23,5 @@
         "files": [
             "src/helpers.php"
         ]
-    },
-    "minimum-stability": "stable"
+    }
 }
